@@ -6,9 +6,6 @@ class FastMathApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fast Math',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       routes: {
         HomeNavRoutingPage.route: (context) => HomeNavRoutingPage()
       },

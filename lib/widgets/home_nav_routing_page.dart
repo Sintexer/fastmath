@@ -1,5 +1,5 @@
 import 'package:fastmath/screens/home_screen.dart';
-import 'package:fastmath/screens/training_list_screen.dart';
+import 'package:fastmath/screens/trainings_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavRoutingPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class HomeNavRoutingPage extends StatefulWidget {
 class _HomeNavRoutingPageState extends State<HomeNavRoutingPage> {
   static const List<Widget> _screens = <Widget>[
     HomeScreen(),
-    TrainingListScreen()
+    TrainingsScreen()
   ];
 
   int _selectedIndex = 0;
@@ -31,9 +31,7 @@ class _HomeNavRoutingPageState extends State<HomeNavRoutingPage> {
   Widget build(BuildContext context) {
     final screen =_screens.elementAt(_selectedIndex);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("A text"),
-      ),
+      appBar: AppBar(),
       body: Center(
         child: screen,
       ),
