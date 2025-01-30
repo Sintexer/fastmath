@@ -17,6 +17,7 @@ class PageScaffold extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
+      // bottomNavigationBar: BottomNavigationBar(items: items),
       drawer: AppDrawer(),
       body: body,
     );
