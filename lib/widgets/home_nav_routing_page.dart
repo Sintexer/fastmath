@@ -1,5 +1,5 @@
 import 'package:fastmath/screens/home_screen.dart';
-import 'package:fastmath/screens/trainings_screen.dart';
+import 'package:fastmath/training/screens/trainings_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeNavRoutingPage extends StatefulWidget {
