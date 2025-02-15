@@ -662,3 +662,211 @@ abstract class _TrainingStatistics implements TrainingStatistics {
   _$$TrainingStatisticsImplCopyWith<_$TrainingStatisticsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$TrainingProgress {
+  TrainingStatistics get statistics => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
+  List<int> get questionsOrder => throw _privateConstructorUsedError;
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $TrainingProgressCopyWith<TrainingProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TrainingProgressCopyWith<$Res> {
+  factory $TrainingProgressCopyWith(
+          TrainingProgress value, $Res Function(TrainingProgress) then) =
+      _$TrainingProgressCopyWithImpl<$Res, TrainingProgress>;
+  @useResult
+  $Res call(
+      {TrainingStatistics statistics, int index, List<int> questionsOrder});
+
+  $TrainingStatisticsCopyWith<$Res> get statistics;
+}
+
+/// @nodoc
+class _$TrainingProgressCopyWithImpl<$Res, $Val extends TrainingProgress>
+    implements $TrainingProgressCopyWith<$Res> {
+  _$TrainingProgressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statistics = null,
+    Object? index = null,
+    Object? questionsOrder = null,
+  }) {
+    return _then(_value.copyWith(
+      statistics: null == statistics
+          ? _value.statistics
+          : statistics // ignore: cast_nullable_to_non_nullable
+              as TrainingStatistics,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsOrder: null == questionsOrder
+          ? _value.questionsOrder
+          : questionsOrder // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ) as $Val);
+  }
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TrainingStatisticsCopyWith<$Res> get statistics {
+    return $TrainingStatisticsCopyWith<$Res>(_value.statistics, (value) {
+      return _then(_value.copyWith(statistics: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$TrainingProgressImplCopyWith<$Res>
+    implements $TrainingProgressCopyWith<$Res> {
+  factory _$$TrainingProgressImplCopyWith(_$TrainingProgressImpl value,
+          $Res Function(_$TrainingProgressImpl) then) =
+      __$$TrainingProgressImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {TrainingStatistics statistics, int index, List<int> questionsOrder});
+
+  @override
+  $TrainingStatisticsCopyWith<$Res> get statistics;
+}
+
+/// @nodoc
+class __$$TrainingProgressImplCopyWithImpl<$Res>
+    extends _$TrainingProgressCopyWithImpl<$Res, _$TrainingProgressImpl>
+    implements _$$TrainingProgressImplCopyWith<$Res> {
+  __$$TrainingProgressImplCopyWithImpl(_$TrainingProgressImpl _value,
+      $Res Function(_$TrainingProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statistics = null,
+    Object? index = null,
+    Object? questionsOrder = null,
+  }) {
+    return _then(_$TrainingProgressImpl(
+      statistics: null == statistics
+          ? _value.statistics
+          : statistics // ignore: cast_nullable_to_non_nullable
+              as TrainingStatistics,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      questionsOrder: null == questionsOrder
+          ? _value._questionsOrder
+          : questionsOrder // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TrainingProgressImpl extends _TrainingProgress
+    with DiagnosticableTreeMixin {
+  const _$TrainingProgressImpl(
+      {this.statistics = const TrainingStatistics(),
+      this.index = 0,
+      required final List<int> questionsOrder})
+      : _questionsOrder = questionsOrder,
+        super._();
+
+  @override
+  @JsonKey()
+  final TrainingStatistics statistics;
+  @override
+  @JsonKey()
+  final int index;
+  final List<int> _questionsOrder;
+  @override
+  List<int> get questionsOrder {
+    if (_questionsOrder is EqualUnmodifiableListView) return _questionsOrder;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questionsOrder);
+  }
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TrainingProgress(statistics: $statistics, index: $index, questionsOrder: $questionsOrder)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TrainingProgress'))
+      ..add(DiagnosticsProperty('statistics', statistics))
+      ..add(DiagnosticsProperty('index', index))
+      ..add(DiagnosticsProperty('questionsOrder', questionsOrder));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TrainingProgressImpl &&
+            (identical(other.statistics, statistics) ||
+                other.statistics == statistics) &&
+            (identical(other.index, index) || other.index == index) &&
+            const DeepCollectionEquality()
+                .equals(other._questionsOrder, _questionsOrder));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, statistics, index,
+      const DeepCollectionEquality().hash(_questionsOrder));
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TrainingProgressImplCopyWith<_$TrainingProgressImpl> get copyWith =>
+      __$$TrainingProgressImplCopyWithImpl<_$TrainingProgressImpl>(
+          this, _$identity);
+}
+
+abstract class _TrainingProgress extends TrainingProgress {
+  const factory _TrainingProgress(
+      {final TrainingStatistics statistics,
+      final int index,
+      required final List<int> questionsOrder}) = _$TrainingProgressImpl;
+  const _TrainingProgress._() : super._();
+
+  @override
+  TrainingStatistics get statistics;
+  @override
+  int get index;
+  @override
+  List<int> get questionsOrder;
+
+  /// Create a copy of TrainingProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TrainingProgressImplCopyWith<_$TrainingProgressImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

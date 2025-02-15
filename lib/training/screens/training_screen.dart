@@ -19,8 +19,7 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(
-        initialPage: ref.read(currentTrainingProblemIndexProvider));
+    _pageController = PageController(initialPage: 0);
   }
 
   @override
@@ -41,20 +40,21 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
       return TrainingLoading();
     }
 
-    final isTrainingFinished = ref.watch(isTrainingFinishedProvider);
+    final trainingState = ref.watch(trainingStateProvider(training));
 
-    if (isTrainingFinished) {
+    if (trainingState.isFinished()) {
       return Scaffold(
         appBar: AppBar(title: Text("Results")),
         body: _buildResults(context, ref, training),
       );
     }
 
-    final trainingState = ref.watch(trainingStateProvider);
+    final trainingStatistics = trainingState.statistics;
 
     return Scaffold(
       appBar: AppBar(
-          title: Text("Training, correct=${trainingState.correctAnswers}")),
+          title:
+              Text("Training, correct=${trainingStatistics.correctAnswers}")),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: PageView.builder(
@@ -63,20 +63,24 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
           //     ref.read(currentTrainingProblemIndexProvider.notifier).next(),
           itemCount: training.problems.length,
           itemBuilder: (context, index) {
-            final problem = training.problems[index];
+            final problemIndex = trainingState.questionsOrder[index];
+            final problem = training.problems[problemIndex];
             return ProblemCard(
               key: ValueKey(problem.question),
               problem: problem,
-              isLast: training.problems.length - 1 == index,
-              onNextPressed: () {
-                if (index < training.problems.length - 1) {
+              isLast: trainingState.questionsOrder.length == index + 1,
+              onAnswer: (correct) {
+                ref
+                    .read(trainingStateProvider(training).notifier)
+                    .recordAnswer(correct);
+                ref
+                    .read(trainingStateProvider(training).notifier)
+                    .nextQuestion();
+                if (!trainingState.isFinished()) {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
-                  ref.read(currentTrainingProblemIndexProvider.notifier).next();
-                } else {
-                  ref.read(isTrainingFinishedProvider.notifier).finish();
                 }
               },
             );
@@ -87,7 +91,7 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
   }
 
   Widget _buildResults(BuildContext context, WidgetRef ref, Training training) {
-    final trainingState = ref.watch(trainingStateProvider);
+    final trainingState = ref.watch(trainingStateProvider(training));
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -98,13 +102,11 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
             Text("You've completed the training"),
             const SizedBox(height: 24),
             Text("Total questions: ${training.problems.length}"),
-            Text("Correct answers: ${trainingState.correctAnswers}"),
+            Text("Correct answers: ${trainingState.statistics.correctAnswers}"),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                ref.invalidate(trainingStateProvider);
-                ref.invalidate(currentTrainingProblemIndexProvider);
-                ref.invalidate(isTrainingFinishedProvider);
+                // ref.invalidate(trainingStateProvider(training));
                 context.go("/trainings");
               },
               child: const Text("Go to Trainings"),
@@ -132,13 +134,13 @@ class TrainingLoading extends StatelessWidget {
 class ProblemCard extends ConsumerWidget {
   final TrainingProblem problem;
   final bool isLast;
-  final VoidCallback onNextPressed;
+  final void Function(bool) onAnswer;
 
   const ProblemCard({
     super.key,
     required this.problem,
     required this.isLast,
-    required this.onNextPressed,
+    required this.onAnswer,
   });
 
   @override
@@ -162,8 +164,7 @@ class ProblemCard extends ConsumerWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    ref.read(trainingStateProvider.notifier).recordAnswer(true);
-                    onNextPressed();
+                    onAnswer(true);
                   },
                   child: Text(isLast ? "Finish" : "Next"),
                 )
