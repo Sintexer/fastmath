@@ -106,6 +106,13 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
               },
               child: const Text("Go to Trainings"),
             ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () {
+                ref.invalidate(trainingStateProvider(training));
+              },
+              child: const Text("Train again"),
+            ),
           ],
         ),
       ),
