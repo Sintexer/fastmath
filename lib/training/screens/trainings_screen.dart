@@ -13,18 +13,20 @@ class TrainingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final allTrainingsPacks = ref.watch(allTrainingPacksProvider);
-
+    final AsyncValue<List<TrainingsPack>> allTrainingsPacks =
+        ref.watch(allTrainingPacksProvider);
     return TopLevelPageScaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        child: ListView.builder(
-          itemCount: allTrainingsPacks.length,
-          itemBuilder: (_, index) =>
-              TrainingList(pack: allTrainingsPacks[index]),
+        body: switch (allTrainingsPacks) {
+      AsyncData(:final value) => Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          child: ListView.builder(
+            itemCount: value.length,
+            itemBuilder: (_, index) => TrainingList(pack: value[index]),
+          ),
         ),
-      ),
-    );
+      AsyncError() => const Text("Oops, something went wrong"),
+      _ => const CircularProgressIndicator()
+    });
   }
 }
 

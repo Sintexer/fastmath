@@ -34,8 +34,11 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
       return TrainingLoading();
     }
 
-    final Training? training =
-        ref.watch(trainingPacksProvider.select((value) => value[widget.id]));
+    final training =
+        ref.watch(trainingPacksProvider.select((v) => switch(v) {
+          AsyncData(:final value) => value[widget.id],
+          _ => null
+        }));
     if (training == null) {
       return TrainingLoading();
     }

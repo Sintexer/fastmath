@@ -17,6 +17,8 @@ dependencies:
   freezed_annotation: ^2.4.4
   responsive_grid_list: ^1.4.0
   go_router: ^14.7.2
+  json_annotation: ^4.9.0
+  collection: ^1.19.0
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +30,9 @@ dev_dependencies:
   riverpod_generator: ^2.4.0
   riverpod_lint: ^2.3.10
   freezed: ^2.5.7
+  json_serializable: ^6.9.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/math-trainings.json
