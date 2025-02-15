@@ -34,18 +34,15 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
       return TrainingLoading();
     }
 
-    final training =
-        ref.watch(trainingPacksProvider.select((v) => switch(v) {
-          AsyncData(:final value) => value[widget.id],
-          _ => null
-        }));
+    final training = ref.watch(trainingPacksProvider.select((v) =>
+        switch (v) { AsyncData(:final value) => value[widget.id], _ => null }));
     if (training == null) {
       return TrainingLoading();
     }
 
     final trainingState = ref.watch(trainingStateProvider(training));
 
-    if (trainingState.isFinished()) {
+    if (trainingState.finished) {
       return Scaffold(
         appBar: AppBar(title: Text("Results")),
         body: _buildResults(context, ref, training),
@@ -57,29 +54,24 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
     return Scaffold(
       appBar: AppBar(
           title:
-              Text("Training, correct=${trainingStatistics.correctAnswers}")),
+              Text("Training, correct=${trainingStatistics.correctAnswers}, total=${trainingState.questionsOrder.length}")),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: PageView.builder(
           controller: _pageController,
-          // onPageChanged: (index) =>
-          //     ref.read(currentTrainingProblemIndexProvider.notifier).next(),
-          itemCount: training.problems.length,
+          itemCount: trainingState.questionsOrder.length,
           itemBuilder: (context, index) {
             final problemIndex = trainingState.questionsOrder[index];
             final problem = training.problems[problemIndex];
+            final isLast = trainingState.questionsOrder.length == index + 1;
             return ProblemCard(
               key: ValueKey(problem.question),
               problem: problem,
-              isLast: trainingState.questionsOrder.length == index + 1,
+              isLast: isLast,
               onAnswer: (correct) {
-                ref
-                    .read(trainingStateProvider(training).notifier)
-                    .recordAnswer(correct);
-                ref
-                    .read(trainingStateProvider(training).notifier)
-                    .nextQuestion();
-                if (!trainingState.isFinished()) {
+                if (isLast) {
+                  ref.read(trainingStateProvider(training).notifier).finish();
+                } else {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,

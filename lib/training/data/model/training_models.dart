@@ -57,9 +57,7 @@ class TrainingProgress with _$TrainingProgress {
   const TrainingProgress._();
   const factory TrainingProgress({
     @Default(TrainingStatistics()) TrainingStatistics statistics,
-    @Default(0) int index,
+    @Default(false) finished,
     required List<int> questionsOrder
   }) = _TrainingProgress;
-
-  bool isFinished() => index == questionsOrder.length;
 }

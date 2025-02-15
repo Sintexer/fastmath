@@ -916,7 +916,7 @@ abstract class _TrainingStatistics implements TrainingStatistics {
 /// @nodoc
 mixin _$TrainingProgress {
   TrainingStatistics get statistics => throw _privateConstructorUsedError;
-  int get index => throw _privateConstructorUsedError;
+  dynamic get finished => throw _privateConstructorUsedError;
   List<int> get questionsOrder => throw _privateConstructorUsedError;
 
   /// Create a copy of TrainingProgress
@@ -933,7 +933,9 @@ abstract class $TrainingProgressCopyWith<$Res> {
       _$TrainingProgressCopyWithImpl<$Res, TrainingProgress>;
   @useResult
   $Res call(
-      {TrainingStatistics statistics, int index, List<int> questionsOrder});
+      {TrainingStatistics statistics,
+      dynamic finished,
+      List<int> questionsOrder});
 
   $TrainingStatisticsCopyWith<$Res> get statistics;
 }
@@ -954,7 +956,7 @@ class _$TrainingProgressCopyWithImpl<$Res, $Val extends TrainingProgress>
   @override
   $Res call({
     Object? statistics = null,
-    Object? index = null,
+    Object? finished = freezed,
     Object? questionsOrder = null,
   }) {
     return _then(_value.copyWith(
@@ -962,10 +964,10 @@ class _$TrainingProgressCopyWithImpl<$Res, $Val extends TrainingProgress>
           ? _value.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
               as TrainingStatistics,
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      finished: freezed == finished
+          ? _value.finished
+          : finished // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       questionsOrder: null == questionsOrder
           ? _value.questionsOrder
           : questionsOrder // ignore: cast_nullable_to_non_nullable
@@ -993,7 +995,9 @@ abstract class _$$TrainingProgressImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {TrainingStatistics statistics, int index, List<int> questionsOrder});
+      {TrainingStatistics statistics,
+      dynamic finished,
+      List<int> questionsOrder});
 
   @override
   $TrainingStatisticsCopyWith<$Res> get statistics;
@@ -1013,7 +1017,7 @@ class __$$TrainingProgressImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? statistics = null,
-    Object? index = null,
+    Object? finished = freezed,
     Object? questionsOrder = null,
   }) {
     return _then(_$TrainingProgressImpl(
@@ -1021,10 +1025,7 @@ class __$$TrainingProgressImplCopyWithImpl<$Res>
           ? _value.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
               as TrainingStatistics,
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      finished: freezed == finished ? _value.finished! : finished,
       questionsOrder: null == questionsOrder
           ? _value._questionsOrder
           : questionsOrder // ignore: cast_nullable_to_non_nullable
@@ -1039,7 +1040,7 @@ class _$TrainingProgressImpl extends _TrainingProgress
     with DiagnosticableTreeMixin {
   const _$TrainingProgressImpl(
       {this.statistics = const TrainingStatistics(),
-      this.index = 0,
+      this.finished = false,
       required final List<int> questionsOrder})
       : _questionsOrder = questionsOrder,
         super._();
@@ -1049,7 +1050,7 @@ class _$TrainingProgressImpl extends _TrainingProgress
   final TrainingStatistics statistics;
   @override
   @JsonKey()
-  final int index;
+  final dynamic finished;
   final List<int> _questionsOrder;
   @override
   List<int> get questionsOrder {
@@ -1060,7 +1061,7 @@ class _$TrainingProgressImpl extends _TrainingProgress
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TrainingProgress(statistics: $statistics, index: $index, questionsOrder: $questionsOrder)';
+    return 'TrainingProgress(statistics: $statistics, finished: $finished, questionsOrder: $questionsOrder)';
   }
 
   @override
@@ -1069,7 +1070,7 @@ class _$TrainingProgressImpl extends _TrainingProgress
     properties
       ..add(DiagnosticsProperty('type', 'TrainingProgress'))
       ..add(DiagnosticsProperty('statistics', statistics))
-      ..add(DiagnosticsProperty('index', index))
+      ..add(DiagnosticsProperty('finished', finished))
       ..add(DiagnosticsProperty('questionsOrder', questionsOrder));
   }
 
@@ -1080,13 +1081,16 @@ class _$TrainingProgressImpl extends _TrainingProgress
             other is _$TrainingProgressImpl &&
             (identical(other.statistics, statistics) ||
                 other.statistics == statistics) &&
-            (identical(other.index, index) || other.index == index) &&
+            const DeepCollectionEquality().equals(other.finished, finished) &&
             const DeepCollectionEquality()
                 .equals(other._questionsOrder, _questionsOrder));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, statistics, index,
+  int get hashCode => Object.hash(
+      runtimeType,
+      statistics,
+      const DeepCollectionEquality().hash(finished),
       const DeepCollectionEquality().hash(_questionsOrder));
 
   /// Create a copy of TrainingProgress
@@ -1102,14 +1106,14 @@ class _$TrainingProgressImpl extends _TrainingProgress
 abstract class _TrainingProgress extends TrainingProgress {
   const factory _TrainingProgress(
       {final TrainingStatistics statistics,
-      final int index,
+      final dynamic finished,
       required final List<int> questionsOrder}) = _$TrainingProgressImpl;
   const _TrainingProgress._() : super._();
 
   @override
   TrainingStatistics get statistics;
   @override
-  int get index;
+  dynamic get finished;
   @override
   List<int> get questionsOrder;
 
