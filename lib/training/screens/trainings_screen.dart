@@ -51,7 +51,7 @@ class PackTrainingList extends StatelessWidget {
         ),
         ResponsiveGridList(
           
-            minItemWidth: 200,
+            minItemWidth: 300,
             listViewBuilderOptions: ListViewBuilderOptions(
                 shrinkWrap: true, physics: ClampingScrollPhysics()),
             children: pack.trainings
@@ -73,41 +73,37 @@ class MathTrainingCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var textTheme = Theme.of(context).textTheme;
-    return SizedBox(
-      width: 250,
-      // height: 150,
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
-          onTap: () async {
-            context.go("/trainings/${training.id}/quiz");
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.calculate),
-                    SizedBox(width: 10.0),
-                    Text(
-                      training.title,
-                      style: textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  "Total problems: ${training.problems.length}",
-                  style: textTheme.bodySmall,
-                ),
-                Text(
-                  "Training length: 10 problems",
-                  style: textTheme.bodySmall,
-                ),
-              ],
-            ),
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        onTap: () async {
+          context.go("/trainings/${training.id}/quiz");
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.calculate),
+                  SizedBox(width: 10.0),
+                  Text(
+                    training.title,
+                    style: textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                "Total problems: ${training.problems.length}",
+                style: textTheme.bodySmall,
+              ),
+              Text(
+                "Training length: 10 problems",
+                style: textTheme.bodySmall,
+              ),
+            ],
           ),
         ),
       ),

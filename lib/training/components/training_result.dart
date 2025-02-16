@@ -32,6 +32,7 @@ class TrainingResult extends ConsumerWidget {
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 TextButton.icon(
                   onPressed: () => context.go("/trainings"),
