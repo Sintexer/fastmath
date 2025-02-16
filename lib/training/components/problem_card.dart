@@ -33,6 +33,7 @@ class _ProblemCardState extends ConsumerState<ProblemCard> {
 
   @override
   Widget build(BuildContext context) {
+    var questionTextStyle = Theme.of(context).textTheme.headlineMedium;
     return Card(
       elevation: 3,
       child: Stack(
@@ -74,10 +75,13 @@ class _ProblemCardState extends ConsumerState<ProblemCard> {
           Center(
             child: TextButton(
               onPressed: showAnswer,
-              child: Text(
-                "${widget.problem.question} = ${_answerShown ? widget.problem.answer : '?'}",
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  "${widget.problem.question} = ${_answerShown ? widget.problem.answer : '?'}",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ),

@@ -48,7 +48,8 @@ class AllTrainings with _$AllTrainings {
 @freezed
 class TrainingStatistics with _$TrainingStatistics {
   const factory TrainingStatistics({
-    @Default(0) int correctAnswers,
+    DateTime? startTime,
+    DateTime? endTime,
   }) = _TrainingStatistics;
 }
 
@@ -56,8 +57,8 @@ class TrainingStatistics with _$TrainingStatistics {
 class TrainingProgress with _$TrainingProgress {
   const TrainingProgress._();
   const factory TrainingProgress({
-    @Default(TrainingStatistics()) TrainingStatistics statistics,
     @Default(false) finished,
+    required TrainingStatistics statistics,
     required List<int> questionsOrder
   }) = _TrainingProgress;
 }

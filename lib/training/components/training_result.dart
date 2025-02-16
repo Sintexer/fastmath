@@ -1,3 +1,4 @@
+import 'package:fastmath/duration/duration_text.dart';
 import 'package:fastmath/training/data/model/training_models.dart';
 import 'package:fastmath/training/providers/training_providers.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,12 @@ class TrainingResult extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var timeSpent = Duration(seconds: 0);
+    var statistics = trainingState.statistics;
+    if (statistics.startTime != null &&
+        trainingState.statistics.endTime != null) {
+      timeSpent = statistics.endTime!.difference(statistics.startTime!);
+    }
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Center(
@@ -27,6 +34,15 @@ class TrainingResult extends ConsumerWidget {
               style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 24),
+            if (timeSpent.inHours < 1)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                Text("Time spent:"),
+                SizedBox(width: 4),
+                DurationText(duration: timeSpent),
+              ]),
+            const SizedBox(height: 12),
             Text(
                 "You've answered ${trainingState.questionsOrder.length} questions in total"),
             const SizedBox(height: 24),
@@ -36,7 +52,7 @@ class TrainingResult extends ConsumerWidget {
               children: [
                 TextButton.icon(
                   onPressed: () => context.go("/trainings"),
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                   label: const Text("All Trainings"),
                 ),
                 const SizedBox(height: 20),

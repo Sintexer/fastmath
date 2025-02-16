@@ -7,15 +7,22 @@ part 'training_providers.g.dart';
 
 @riverpod
 class TrainingState extends _$TrainingState {
-
   @override
   TrainingProgress build(Training training) {
-    final questionsOrder = training.problems.indexed.map((pair) => pair.$1).toList();
+    final questionsOrder =
+        training.problems.indexed.map((pair) => pair.$1).toList();
     questionsOrder.shuffle();
-    return TrainingProgress(questionsOrder: questionsOrder.sublist(0, min(10, questionsOrder.length)));
+
+    return TrainingProgress(
+      questionsOrder: questionsOrder.sublist(0, min(10, questionsOrder.length)),
+      statistics: TrainingStatistics(startTime: DateTime.now()),
+    );
   }
 
   void finish() {
-    state = state.copyWith(finished: true);
+    state = state.copyWith(
+      finished: true,
+      statistics: state.statistics.copyWith(endTime: DateTime.now()),
+    );
   }
 }
