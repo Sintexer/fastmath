@@ -35,16 +35,13 @@ class TrainingResult extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             if (timeSpent.inHours < 1)
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
+              Row(mainAxisSize: MainAxisSize.min, children: [
                 Text("Time spent:"),
                 SizedBox(width: 4),
                 DurationText(duration: timeSpent),
               ]),
             const SizedBox(height: 12),
-            Text(
-                "You've answered ${trainingState.questionsOrder.length} questions in total"),
+            Text("Total questions: ${trainingState.questionsOrder.length}"),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

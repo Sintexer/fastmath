@@ -9,9 +9,9 @@ class DurationText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int hours = duration.inHours;
-    int minutes = duration.inMinutes;
-    int seconds = duration.inSeconds;
+    int hours = duration.inHours % 60;
+    int minutes = duration.inMinutes % 60;
+    int seconds = duration.inSeconds % 60;
     int milliseconds = duration.inMilliseconds % 1000;
 
     String hoursStr = hours > 0 ? "$hours:" : "";

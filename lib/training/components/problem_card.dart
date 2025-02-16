@@ -33,7 +33,6 @@ class _ProblemCardState extends ConsumerState<ProblemCard> {
 
   @override
   Widget build(BuildContext context) {
-    var questionTextStyle = Theme.of(context).textTheme.headlineMedium;
     return Card(
       elevation: 3,
       child: Stack(
