@@ -5,7 +5,8 @@ import 'package:fastmath/training/data/repository/training_repository.dart';
 import 'package:fastmath/training/providers/training_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
+const int cardeChangeDuration = 180;
 
 class TrainingScreen extends ConsumerStatefulWidget {
   final String? id;
@@ -46,14 +47,14 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
 
     if (trainingState.finished) {
       return Scaffold(
-        appBar: AppBar(title: Text("Results")),
+        appBar: AppBar(title: Text("${training.pack} training result")),
         body: _buildResults(context, ref, training),
       );
     }
 
     final total = trainingState.questionsOrder.length;
     return Scaffold(
-      appBar: AppBar(title: Text("Training total=$total")),
+      appBar: AppBar(title: Text("${training.pack} training")),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: PageView.builder(
@@ -73,7 +74,7 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
                   ref.read(trainingStateProvider(training).notifier).finish();
                 } else {
                   _pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: cardeChangeDuration),
                     curve: Curves.easeInOut,
                   );
                 }
@@ -81,7 +82,7 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
               onPrevios: () {
                 if (index > 0) {
                   _pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: cardeChangeDuration),
                     curve: Curves.easeInOut,
                   );
                 }

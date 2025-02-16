@@ -29,7 +29,7 @@ class ProblemCard extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(cardPadding),
             alignment: Alignment.topRight,
-            child: Text("${index + 1}/$total"),
+            child: Text("${index + 1}/$total", style: Theme.of(context).textTheme.labelLarge,),
           ),
           Container(
             alignment: Alignment.bottomCenter,
