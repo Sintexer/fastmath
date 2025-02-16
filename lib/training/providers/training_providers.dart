@@ -14,7 +14,7 @@ class TrainingState extends _$TrainingState {
     questionsOrder.shuffle();
 
     return TrainingProgress(
-      questionsOrder: questionsOrder.sublist(0, min(10, questionsOrder.length)),
+      questionsOrder: questionsOrder,
       statistics: TrainingStatistics(startTime: DateTime.now()),
     );
   }
