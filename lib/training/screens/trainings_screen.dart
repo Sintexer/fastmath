@@ -96,11 +96,7 @@ class MathTrainingCard extends ConsumerWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                "Total problems: ${training.problems.length}",
-                style: textTheme.bodySmall,
-              ),
-              Text(
-                "Training length: 10 problems",
+                "Total problems ${training.problems.length}",
                 style: textTheme.bodySmall,
               ),
             ],
