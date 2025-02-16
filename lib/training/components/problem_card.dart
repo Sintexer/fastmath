@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const double cardPadding = 20.0;
 
-class ProblemCard extends ConsumerWidget {
+class ProblemCard extends ConsumerStatefulWidget {
   final TrainingProblem problem;
   final int index;
   final int total;
@@ -21,7 +21,18 @@ class ProblemCard extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _ProblemCardState();
+}
+
+class _ProblemCardState extends ConsumerState<ProblemCard> {
+  bool _answerShown = false;
+
+  void showAnswer() => setState(() {
+        _answerShown = true;
+      });
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
       elevation: 3,
       child: Stack(
@@ -29,7 +40,10 @@ class ProblemCard extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(cardPadding),
             alignment: Alignment.topRight,
-            child: Text("${index + 1}/$total", style: Theme.of(context).textTheme.labelLarge,),
+            child: Text(
+              "${widget.index + 1}/${widget.total}",
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           ),
           Container(
             alignment: Alignment.bottomCenter,
@@ -39,17 +53,17 @@ class ProblemCard extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    index > 0
+                    widget.index > 0
                         ? CardNavigationButton(
                             alignment: Alignment.bottomLeft,
-                            onPressed: onPrevios,
+                            onPressed: widget.onPrevios,
                             text: "Previous",
                           )
                         : Expanded(child: SizedBox()),
                     SizedBox(width: cardPadding),
                     CardNavigationButton(
                       alignment: Alignment.bottomRight,
-                      onPressed: onNext,
+                      onPressed: widget.onNext,
                       text: _isLast() ? "Finish" : "Next",
                     ),
                   ],
@@ -58,10 +72,13 @@ class ProblemCard extends ConsumerWidget {
             ),
           ),
           Center(
-            child: Text(
-              "${problem.question} = ?",
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
+            child: TextButton(
+              onPressed: showAnswer,
+              child: Text(
+                "${widget.problem.question} = ${_answerShown ? widget.problem.answer : '?'}",
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],
@@ -69,7 +86,7 @@ class ProblemCard extends ConsumerWidget {
     );
   }
 
-  bool _isLast() => index + 1 == total;
+  bool _isLast() => widget.index + 1 == widget.total;
 }
 
 class CardNavigationButton extends StatelessWidget {
