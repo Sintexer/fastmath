@@ -19,9 +19,10 @@ class TrainingsScreen extends ConsumerWidget {
         body: switch (allTrainingsPacks) {
       AsyncData(:final value) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 12),
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (_, __) => SizedBox(height: 24,),
             itemCount: value.length,
-            itemBuilder: (_, index) => TrainingList(pack: value[index]),
+            itemBuilder: (_, index) => PackTrainingList(pack: value[index]),
           ),
         ),
       AsyncError() => const Text("Oops, something went wrong"),
@@ -30,30 +31,34 @@ class TrainingsScreen extends ConsumerWidget {
   }
 }
 
-class TrainingList extends StatelessWidget {
-  const TrainingList({super.key, required this.pack});
+class PackTrainingList extends StatelessWidget {
+  const PackTrainingList({super.key, required this.pack});
 
   final TrainingsPack pack;
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.symmetric(vertical: 4),
-        child: Text(
-          pack.name,
-          style: TextTheme.of(context).displayMedium,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 16),
+          child: Text(
+            "${pack.name} trainings",
+            style: TextTheme.of(context).titleLarge,
+          ),
         ),
-      ),
-      ResponsiveGridList(
-          minItemWidth: 200,
-          listViewBuilderOptions: ListViewBuilderOptions(
-              shrinkWrap: true, physics: ClampingScrollPhysics()),
-          children: pack.trainings
-              .map((it) => MathTrainingCard(training: it))
-              .toList()),
-    ]);
+        ResponsiveGridList(
+          
+            minItemWidth: 200,
+            listViewBuilderOptions: ListViewBuilderOptions(
+                shrinkWrap: true, physics: ClampingScrollPhysics()),
+            children: pack.trainings
+                .map((it) => MathTrainingCard(training: it))
+                .toList()),
+      ]),
+    );
   }
 }
 
@@ -67,16 +72,43 @@ class MathTrainingCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      width: 200,
-      height: 300,
+    var textTheme = Theme.of(context).textTheme;
+    return SizedBox(
+      width: 250,
+      // height: 150,
       child: Card(
-        child: ListTile(
-          leading: Icon(Icons.calculate),
-          title: Text(training.title),
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
           onTap: () async {
             context.go("/trainings/${training.id}/quiz");
           },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.calculate),
+                    SizedBox(width: 10.0),
+                    Text(
+                      training.title,
+                      style: textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10.0),
+                Text(
+                  "Total problems: ${training.problems.length}",
+                  style: textTheme.bodySmall,
+                ),
+                Text(
+                  "Training length: 10 problems",
+                  style: textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@
     "trainings": [
         {
             "id": "1",
-            "title": "Math training 1",
+            "title": "Addition for beginners",
             "pack": "Addition",
             "problems": [
                 {
@@ -549,7 +549,7 @@
         },
         {
             "id": "2",
-            "title": "Math training 2",
+            "title": "Addition for enthusiasts",
             "pack": "Addition",
             "problems": [
                 {
@@ -1156,7 +1156,7 @@
         },
         {
             "id": "20",
-            "title": "Subtraction 1",
+            "title": "Subtraction for beginners",
             "pack": "Subtraction",
             "problems": [
                 {
@@ -1167,7 +1167,7 @@
         },
         {
             "id": "21",
-            "title": "Subtraction 2",
+            "title": "Subtraction for enthusiasts",
             "pack": "Subtraction",
             "problems": [
                 {
