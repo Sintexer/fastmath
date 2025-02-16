@@ -1,5 +1,3 @@
-
-
 import 'package:fastmath/training/data/model/training_models.dart';
 import 'package:fastmath/training/providers/training_providers.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class TrainingResult extends ConsumerWidget {
-
   final Training training;
   final TrainingProgress trainingState;
 
@@ -25,24 +22,30 @@ class TrainingResult extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You've completed the training"),
-            const SizedBox(height: 24),
-            Text("Total questions: ${training.problems.length}"),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                // ref.invalidate(trainingStateProvider(training));
-                context.go("/trainings");
-              },
-              child: const Text("Go to Trainings"),
+            Text(
+              "Well done!",
+              style: Theme.of(context).textTheme.displaySmall,
             ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                ref.invalidate(trainingStateProvider(training));
-              },
-              child: const Text("Train again"),
-            ),
+            const SizedBox(height: 24),
+            Text(
+                "You've answered ${trainingState.questionsOrder.length} questions in total"),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton.icon(
+                  onPressed: () => context.go("/trainings"),
+                  icon: Icon(Icons.arrow_back),
+                  label: const Text("All Trainings"),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () =>
+                      ref.invalidate(trainingStateProvider(training)),
+                  child: const Text("Continue training"),
+                ),
+              ],
+            )
           ],
         ),
       ),
