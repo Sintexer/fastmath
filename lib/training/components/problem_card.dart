@@ -48,7 +48,6 @@ class _ProblemCardState extends ConsumerState<ProblemCard> {
           Container(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: 200,
               child: Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,7 +107,7 @@ class CardNavigationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
-        height: 200,
+        height: 120,
         child: TextButton(
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
