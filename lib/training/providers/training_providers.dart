@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fastmath/training/data/model/training_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

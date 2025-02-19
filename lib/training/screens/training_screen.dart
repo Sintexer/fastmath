@@ -1,4 +1,4 @@
-import 'package:fastmath/training/components/problem_card.dart';
+import 'package:fastmath/training/components/training_card.dart';
 import 'package:fastmath/training/components/training_result.dart';
 import 'package:fastmath/training/data/model/training_models.dart';
 import 'package:fastmath/training/data/repository/training_repository.dart';
@@ -64,7 +64,7 @@ class _TrainingScreenState extends ConsumerState<TrainingScreen> {
             final problemIndex = trainingState.questionsOrder[index];
             final problem = training.problems[problemIndex];
             final isLast = index + 1 == total;
-            return ProblemCard(
+            return TrainingCard(
               key: ValueKey(problem.question),
               problem: problem,
               index: index,

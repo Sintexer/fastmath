@@ -4,14 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const double cardPadding = 20.0;
 
-class ProblemCard extends ConsumerStatefulWidget {
+class TrainingCard extends ConsumerStatefulWidget {
   final TrainingProblem problem;
   final int index;
   final int total;
   final VoidCallback onNext;
   final VoidCallback onPrevios;
 
-  const ProblemCard({
+  const TrainingCard({
     super.key,
     required this.problem,
     required this.index,
@@ -24,7 +24,7 @@ class ProblemCard extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _ProblemCardState();
 }
 
-class _ProblemCardState extends ConsumerState<ProblemCard> {
+class _ProblemCardState extends ConsumerState<TrainingCard> {
   bool _answerShown = false;
 
   void showAnswer() => setState(() {
