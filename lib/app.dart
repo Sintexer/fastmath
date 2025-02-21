@@ -1,24 +1,35 @@
+import 'package:fastmath/challenge/screens/challenge_config_screen.dart';
 import 'package:fastmath/screens/home_screen.dart';
 import 'package:fastmath/training/screens/trainings_screen.dart';
 import 'package:fastmath/training/screens/training_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-final _router = GoRouter(routes: [
-  GoRoute(
-    path: '/',
-    builder: (context, state) => const HomeScreen(),
-  ),
-  GoRoute(
+final _router = GoRouter(
+  routes: [
+    GoRoute(
+        path: '/',
+        builder: (context, state) => const HomeScreen(),
+        routes: [
+          GoRoute(
+            path: ChallengeConfigScreen.routeName,
+            builder: (context, state) => const ChallengeConfigScreen(),
+          ),
+        ]),
+    GoRoute(
       path: '/trainings',
       builder: (context, state) => const TrainingsScreen(),
       routes: [
         GoRoute(
           path: "/:id/quiz",
-          builder: (context, state) => TrainingScreen(id: state.pathParameters['id'],),
+          builder: (context, state) => TrainingScreen(
+            id: state.pathParameters['id'],
+          ),
         )
-      ])
-]);
+      ],
+    ),
+  ],
+);
 
 class FastMathApp extends StatelessWidget {
   @override
