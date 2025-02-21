@@ -11,3 +11,12 @@ class ChallengeConfig with _$ChallengeConfig {
     required List<Topic> topics,
   }) = _ChallengeConfig;
 }
+
+@freezed
+class ChallengeProblem with _$ChallengeProblem {
+  const factory ChallengeProblem({
+    required String question,
+    required String correctAnswer,
+    @Default([]) List<String> mockAnswers
+  }) = _ChallengeProblem;
+}
