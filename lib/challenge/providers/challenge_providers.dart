@@ -46,4 +46,10 @@ class ChallengeState extends _$ChallengeState {
       answers: List.empty(),
     );
   }
+
+  Future<void> submitAnswer(String answer) async {
+    final currentProgress = state.value!;
+    state = AsyncData(currentProgress
+        .copyWith(answers: [...currentProgress.answers, answer]));
+  }
 }

@@ -39,7 +39,7 @@ final challengeConfigStateProvider =
 );
 
 typedef _$ChallengeConfigState = AutoDisposeNotifier<ChallengeConfig>;
-String _$challengeStateHash() => r'5c7024623d33dea126127c38a8d59b20108095b4';
+String _$challengeStateHash() => r'b23be92148994f62c754f0d5fc348e2653013548';
 
 /// See also [ChallengeState].
 @ProviderFor(ChallengeState)

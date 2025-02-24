@@ -12,6 +12,7 @@ class AdditionProblemGenerator extends ProblemGeneratorService {
     return ChallengeProblem(
       question: "$left + $right",
       correctAnswer: "${left + right}",
+      mockAnswers: List.generate(3, (index) => (random.nextInt(100) + 10).toString(),)
     );
   }
 
