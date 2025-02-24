@@ -20,3 +20,12 @@ class ChallengeProblem with _$ChallengeProblem {
     @Default([]) List<String> mockAnswers
   }) = _ChallengeProblem;
 }
+
+@freezed
+class ChallengeProgress with _$ChallengeProgress {
+  const factory ChallengeProgress({
+    required List<ChallengeProblem> problems,
+    required List<String> answers,
+    @Default(0) int currentProblem,
+  })  = _ChallengeProgress;
+}

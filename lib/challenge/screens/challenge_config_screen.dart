@@ -1,7 +1,9 @@
 import 'package:fastmath/challenge/providers/challenge_providers.dart';
+import 'package:fastmath/challenge/screens/challenge_screen.dart';
 import 'package:fastmath/model/math.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ChallengeConfigScreen extends ConsumerWidget {
   static const routeName = "/challenge/config";
@@ -89,8 +91,7 @@ class ChallengeConfigScreen extends ConsumerWidget {
                 alignment: Alignment.bottomRight,
                 child: OutlinedButton(
                   onPressed: () {
-                    // Navigate to the Quiz screen
-                    print("/mock go to challenge");
+                    context.go(ChallengeScreen.routeName);
                     // context.go('/quiz');
                   },
                   child: Text('Start Challenge'),

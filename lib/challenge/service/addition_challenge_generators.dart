@@ -7,8 +7,8 @@ class AdditionProblemGenerator extends ProblemGeneratorService {
   final random = Random();
   @override
   Future<ChallengeProblem> generateProblem() async {
-    final left = random.nextInt(8) + 1;
-    final right = random.nextInt(90) + 2;
+    final left = random.nextInt(9) + 1;
+    final right = random.nextInt(88) + 11;
     return ChallengeProblem(
       question: "$left + $right",
       correctAnswer: "${left + right}",

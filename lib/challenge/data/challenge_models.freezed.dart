@@ -346,3 +346,196 @@ abstract class _ChallengeProblem implements ChallengeProblem {
   _$$ChallengeProblemImplCopyWith<_$ChallengeProblemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ChallengeProgress {
+  List<ChallengeProblem> get problems => throw _privateConstructorUsedError;
+  List<String> get answers => throw _privateConstructorUsedError;
+  int get currentProblem => throw _privateConstructorUsedError;
+
+  /// Create a copy of ChallengeProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ChallengeProgressCopyWith<ChallengeProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChallengeProgressCopyWith<$Res> {
+  factory $ChallengeProgressCopyWith(
+          ChallengeProgress value, $Res Function(ChallengeProgress) then) =
+      _$ChallengeProgressCopyWithImpl<$Res, ChallengeProgress>;
+  @useResult
+  $Res call(
+      {List<ChallengeProblem> problems,
+      List<String> answers,
+      int currentProblem});
+}
+
+/// @nodoc
+class _$ChallengeProgressCopyWithImpl<$Res, $Val extends ChallengeProgress>
+    implements $ChallengeProgressCopyWith<$Res> {
+  _$ChallengeProgressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ChallengeProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? problems = null,
+    Object? answers = null,
+    Object? currentProblem = null,
+  }) {
+    return _then(_value.copyWith(
+      problems: null == problems
+          ? _value.problems
+          : problems // ignore: cast_nullable_to_non_nullable
+              as List<ChallengeProblem>,
+      answers: null == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      currentProblem: null == currentProblem
+          ? _value.currentProblem
+          : currentProblem // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ChallengeProgressImplCopyWith<$Res>
+    implements $ChallengeProgressCopyWith<$Res> {
+  factory _$$ChallengeProgressImplCopyWith(_$ChallengeProgressImpl value,
+          $Res Function(_$ChallengeProgressImpl) then) =
+      __$$ChallengeProgressImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<ChallengeProblem> problems,
+      List<String> answers,
+      int currentProblem});
+}
+
+/// @nodoc
+class __$$ChallengeProgressImplCopyWithImpl<$Res>
+    extends _$ChallengeProgressCopyWithImpl<$Res, _$ChallengeProgressImpl>
+    implements _$$ChallengeProgressImplCopyWith<$Res> {
+  __$$ChallengeProgressImplCopyWithImpl(_$ChallengeProgressImpl _value,
+      $Res Function(_$ChallengeProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChallengeProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? problems = null,
+    Object? answers = null,
+    Object? currentProblem = null,
+  }) {
+    return _then(_$ChallengeProgressImpl(
+      problems: null == problems
+          ? _value._problems
+          : problems // ignore: cast_nullable_to_non_nullable
+              as List<ChallengeProblem>,
+      answers: null == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      currentProblem: null == currentProblem
+          ? _value.currentProblem
+          : currentProblem // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChallengeProgressImpl implements _ChallengeProgress {
+  const _$ChallengeProgressImpl(
+      {required final List<ChallengeProblem> problems,
+      required final List<String> answers,
+      this.currentProblem = 0})
+      : _problems = problems,
+        _answers = answers;
+
+  final List<ChallengeProblem> _problems;
+  @override
+  List<ChallengeProblem> get problems {
+    if (_problems is EqualUnmodifiableListView) return _problems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_problems);
+  }
+
+  final List<String> _answers;
+  @override
+  List<String> get answers {
+    if (_answers is EqualUnmodifiableListView) return _answers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_answers);
+  }
+
+  @override
+  @JsonKey()
+  final int currentProblem;
+
+  @override
+  String toString() {
+    return 'ChallengeProgress(problems: $problems, answers: $answers, currentProblem: $currentProblem)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChallengeProgressImpl &&
+            const DeepCollectionEquality().equals(other._problems, _problems) &&
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
+            (identical(other.currentProblem, currentProblem) ||
+                other.currentProblem == currentProblem));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_problems),
+      const DeepCollectionEquality().hash(_answers),
+      currentProblem);
+
+  /// Create a copy of ChallengeProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChallengeProgressImplCopyWith<_$ChallengeProgressImpl> get copyWith =>
+      __$$ChallengeProgressImplCopyWithImpl<_$ChallengeProgressImpl>(
+          this, _$identity);
+}
+
+abstract class _ChallengeProgress implements ChallengeProgress {
+  const factory _ChallengeProgress(
+      {required final List<ChallengeProblem> problems,
+      required final List<String> answers,
+      final int currentProblem}) = _$ChallengeProgressImpl;
+
+  @override
+  List<ChallengeProblem> get problems;
+  @override
+  List<String> get answers;
+  @override
+  int get currentProblem;
+
+  /// Create a copy of ChallengeProgress
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChallengeProgressImplCopyWith<_$ChallengeProgressImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
