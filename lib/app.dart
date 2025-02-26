@@ -1,4 +1,5 @@
 import 'package:fastmath/challenge/screens/challenge_config_screen.dart';
+import 'package:fastmath/challenge/screens/challenge_result_screen.dart';
 import 'package:fastmath/challenge/screens/challenge_screen.dart';
 import 'package:fastmath/screens/home_screen.dart';
 import 'package:fastmath/training/screens/trainings_screen.dart';
@@ -19,6 +20,10 @@ final _router = GoRouter(
           GoRoute(
             path: ChallengeScreen.routeName,
             builder: (context, state) => const ChallengeScreen(),
+          ),
+          GoRoute(
+            path: ChallengeResultScreen.routeName,
+            builder: (context, state) => const ChallengeResultScreen(),
           ),
         ]),
     GoRoute(

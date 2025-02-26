@@ -3,6 +3,8 @@ import 'package:fastmath/challenge/providers/challenge_providers.dart';
 import 'package:fastmath/challenge/screens/challenge_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class ChallengeScreen extends ConsumerWidget {
   static const routeName = "/challenge/quiz";
@@ -25,8 +27,7 @@ class ChallengeScreen extends ConsumerWidget {
                     currentIndex >= challengeProgress.problems.length;
                 if (hasCompleted) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.pushReplacementNamed(
-                        context, ChallengeResultScreen.routeName);
+                    context.go(ChallengeResultScreen.routeName);
                   });
                   return const SizedBox.shrink();
                 }
@@ -67,9 +68,10 @@ class ChallengeProblemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Center(
-        child: Text(question, style: Theme.of(context).textTheme.displayMedium,),
+    return Center(
+      child: Text(
+        question,
+        style: Theme.of(context).textTheme.displayMedium,
       ),
     );
   }
@@ -93,38 +95,43 @@ class ChallengeProblemAnswerOptions extends StatelessWidget {
     final answers = [...mockAnswers, problem.correctAnswer];
     answers.shuffle();
 
-    return Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      alignment: WrapAlignment.center,
-      runAlignment: WrapAlignment.center,
-      children: answers.map((answer) {
-        return SizedBox(
-          width: 130, // Explicit width for the button
-          height: 50, // Explicit height for the button
-          child: ChallengeAnswerButton(
-            answer,
-            onAnswerSelected: onAnswerSelected,
-          ),
-        );
-      }).toList(),
+    return GridView.count(
+      crossAxisCount: 2,
+      shrinkWrap: true,
+      childAspectRatio: 3,
+      mainAxisSpacing: 16,
+      crossAxisSpacing: 16,
+      children: answers
+          .map((answer) =>
+              ChallengeAnswerButton(answer, onAnswerSelected: onAnswerSelected))
+          .toList(),
     );
   }
 }
 
 class ChallengeAnswerButton extends StatelessWidget {
+  final double? width;
   final String data;
   final ValueChanged<String> onAnswerSelected;
   const ChallengeAnswerButton(this.data,
-      {super.key, required this.onAnswerSelected});
+      {super.key, this.width, required this.onAnswerSelected});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => onAnswerSelected(data),
+      style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
       child: Center(
         child: SizedBox(
-          child: Center(child: Text(data, style: Theme.of(context).textTheme.bodyLarge,)),
+          width: width,
+          height: 200,
+          child: Center(
+              child: Text(
+            data,
+            style: Theme.of(context).textTheme.bodyLarge,
+          )),
         ),
       ),
     );
