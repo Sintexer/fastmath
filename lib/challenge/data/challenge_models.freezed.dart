@@ -539,3 +539,153 @@ abstract class _ChallengeProgress implements ChallengeProgress {
   _$$ChallengeProgressImplCopyWith<_$ChallengeProgressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ChallengeResult {
+  int get correctAnswers => throw _privateConstructorUsedError;
+  int get totalQuestions => throw _privateConstructorUsedError;
+
+  /// Create a copy of ChallengeResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ChallengeResultCopyWith<ChallengeResult> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChallengeResultCopyWith<$Res> {
+  factory $ChallengeResultCopyWith(
+          ChallengeResult value, $Res Function(ChallengeResult) then) =
+      _$ChallengeResultCopyWithImpl<$Res, ChallengeResult>;
+  @useResult
+  $Res call({int correctAnswers, int totalQuestions});
+}
+
+/// @nodoc
+class _$ChallengeResultCopyWithImpl<$Res, $Val extends ChallengeResult>
+    implements $ChallengeResultCopyWith<$Res> {
+  _$ChallengeResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ChallengeResult
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? correctAnswers = null,
+    Object? totalQuestions = null,
+  }) {
+    return _then(_value.copyWith(
+      correctAnswers: null == correctAnswers
+          ? _value.correctAnswers
+          : correctAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalQuestions: null == totalQuestions
+          ? _value.totalQuestions
+          : totalQuestions // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ChallengeResultImplCopyWith<$Res>
+    implements $ChallengeResultCopyWith<$Res> {
+  factory _$$ChallengeResultImplCopyWith(_$ChallengeResultImpl value,
+          $Res Function(_$ChallengeResultImpl) then) =
+      __$$ChallengeResultImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int correctAnswers, int totalQuestions});
+}
+
+/// @nodoc
+class __$$ChallengeResultImplCopyWithImpl<$Res>
+    extends _$ChallengeResultCopyWithImpl<$Res, _$ChallengeResultImpl>
+    implements _$$ChallengeResultImplCopyWith<$Res> {
+  __$$ChallengeResultImplCopyWithImpl(
+      _$ChallengeResultImpl _value, $Res Function(_$ChallengeResultImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChallengeResult
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? correctAnswers = null,
+    Object? totalQuestions = null,
+  }) {
+    return _then(_$ChallengeResultImpl(
+      correctAnswers: null == correctAnswers
+          ? _value.correctAnswers
+          : correctAnswers // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalQuestions: null == totalQuestions
+          ? _value.totalQuestions
+          : totalQuestions // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChallengeResultImpl implements _ChallengeResult {
+  const _$ChallengeResultImpl(
+      {required this.correctAnswers, required this.totalQuestions});
+
+  @override
+  final int correctAnswers;
+  @override
+  final int totalQuestions;
+
+  @override
+  String toString() {
+    return 'ChallengeResult(correctAnswers: $correctAnswers, totalQuestions: $totalQuestions)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChallengeResultImpl &&
+            (identical(other.correctAnswers, correctAnswers) ||
+                other.correctAnswers == correctAnswers) &&
+            (identical(other.totalQuestions, totalQuestions) ||
+                other.totalQuestions == totalQuestions));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, correctAnswers, totalQuestions);
+
+  /// Create a copy of ChallengeResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChallengeResultImplCopyWith<_$ChallengeResultImpl> get copyWith =>
+      __$$ChallengeResultImplCopyWithImpl<_$ChallengeResultImpl>(
+          this, _$identity);
+}
+
+abstract class _ChallengeResult implements ChallengeResult {
+  const factory _ChallengeResult(
+      {required final int correctAnswers,
+      required final int totalQuestions}) = _$ChallengeResultImpl;
+
+  @override
+  int get correctAnswers;
+  @override
+  int get totalQuestions;
+
+  /// Create a copy of ChallengeResult
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChallengeResultImplCopyWith<_$ChallengeResultImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

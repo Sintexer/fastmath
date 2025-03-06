@@ -1,3 +1,4 @@
+import 'package:fastmath/challenge/data/challenge_models.dart';
 import 'package:fastmath/challenge/screens/challenge_config_screen.dart';
 import 'package:fastmath/challenge/screens/challenge_result_screen.dart';
 import 'package:fastmath/challenge/screens/challenge_screen.dart';
@@ -23,7 +24,11 @@ final _router = GoRouter(
           ),
           GoRoute(
             path: ChallengeResultScreen.routeName,
-            builder: (context, state) => const ChallengeResultScreen(),
+            name: "challengeResult",
+            builder: (context, state) {
+                final result = state.extra as ChallengeResult;
+                return ChallengeResultScreen(result: result);
+              },
           ),
         ]),
     GoRoute(

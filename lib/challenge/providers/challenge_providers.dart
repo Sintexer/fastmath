@@ -47,9 +47,25 @@ class ChallengeState extends _$ChallengeState {
     );
   }
 
-  Future<void> submitAnswer(String answer) async {
+  Future<bool> submitAnswer(String answer) async {
     final currentProgress = state.value!;
     state = AsyncData(currentProgress
         .copyWith(answers: [...currentProgress.answers, answer]));
+    return state.value!.answers.length >= state.value!.problems.length;
+  }
+
+  Future<ChallengeResult> calculateResult() async {
+    int correctAnswers = 0;
+    if (state.value == null) {
+      return ChallengeResult(correctAnswers: 0, totalQuestions: 0);
+    }
+    final data = state.value!;
+    for (int i = 0; i < data.answers.length; ++i) {
+      if (data.answers[i] == data.problems[i].correctAnswer) {
+        ++correctAnswers;
+      }
+    }
+    return ChallengeResult(correctAnswers: correctAnswers, totalQuestions: data.answers.length);
+
   }
 }

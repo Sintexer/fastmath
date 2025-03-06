@@ -15,6 +15,7 @@ class ChallengeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final challenge = ref.watch(challengeStateProvider);
 
+// TODO prevent accidental back button press
     return Scaffold(
       appBar: AppBar(title: Text("Challenge")),
       body: Center(
@@ -23,13 +24,8 @@ class ChallengeScreen extends ConsumerWidget {
           child: switch (challenge) {
             AsyncData(value: final challengeProgress) => Builder(builder: (_) {
                 final currentIndex = challengeProgress.answers.length;
-                final hasCompleted =
-                    currentIndex >= challengeProgress.problems.length;
-                if (hasCompleted) {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    context.go(ChallengeResultScreen.routeName);
-                  });
-                  return const SizedBox.shrink();
+                if (currentIndex >= challengeProgress.problems.length) {
+                  return CircularProgressIndicator();
                 }
                 final currentProblem = challengeProgress.problems[currentIndex];
 
@@ -44,10 +40,20 @@ class ChallengeScreen extends ConsumerWidget {
                       SizedBox(height: 32),
                       ChallengeProblemAnswerOptions(
                         problem: currentProblem,
-                        onAnswerSelected: (answer) {
-                          ref
+                        onAnswerSelected: (answer) async {
+                          final finished = await ref
                               .read(challengeStateProvider.notifier)
                               .submitAnswer(answer);
+
+                          if (finished) {
+                            final result = await ref
+                                .read(challengeStateProvider.notifier)
+                                .calculateResult();
+                            if (context.mounted) {
+                              context.go(ChallengeResultScreen.routeName,
+                                  extra: result);
+                            }
+                          }
                         },
                       ),
                     ],
@@ -110,11 +116,10 @@ class ChallengeProblemAnswerOptions extends StatelessWidget {
 }
 
 class ChallengeAnswerButton extends StatelessWidget {
-  final double? width;
   final String data;
   final ValueChanged<String> onAnswerSelected;
   const ChallengeAnswerButton(this.data,
-      {super.key, this.width, required this.onAnswerSelected});
+      {super.key, required this.onAnswerSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +130,6 @@ class ChallengeAnswerButton extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
       child: Center(
         child: SizedBox(
-          width: width,
           height: 200,
           child: Center(
               child: Text(

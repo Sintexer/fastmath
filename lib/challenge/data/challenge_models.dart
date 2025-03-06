@@ -29,3 +29,11 @@ class ChallengeProgress with _$ChallengeProgress {
     @Default(0) int currentProblem,
   })  = _ChallengeProgress;
 }
+
+@freezed
+class ChallengeResult with _$ChallengeResult {
+  const factory ChallengeResult({
+    required int correctAnswers,
+    required int totalQuestions
+  }) = _ChallengeResult;
+}
