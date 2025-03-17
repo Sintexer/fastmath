@@ -38,6 +38,11 @@ class TopLevelDrawer extends StatelessWidget {
             title: 'Trainings',
             goRoute: '/trainings',
           ),
+          TopLevelDrawerTile(
+            icon: Icons.topic,
+            title: 'Units',
+            goRoute: '/units',
+          ),
         ],
       ),
     );
