@@ -43,24 +43,27 @@ class UnitsScreen extends ConsumerWidget {
         color: colorScheme.surfaceContainer,
         child: Center(
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
+            padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
             // decoration:
             //     BoxDecoration(borderRadius: BorderRadius.circular(16.0)),
             width: 600,
-            child: ListView.builder(
+            child: ListView.separated(
               itemCount: items.length,
+              separatorBuilder: (_, __)=> SizedBox(height: 2.0),
               itemBuilder: (context, index) {
+                final isFirst = index == 0;
+                final isLast = index == items.length - 1;
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 16.0),
+                  // margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 16.0),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLowest,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(index == 0 ? 16.0 : 4),
-                      topRight: Radius.circular(index == 0 ? 16.0 : 4),
+                      topLeft: Radius.circular(isFirst ? 16.0 : 4),
+                      topRight: Radius.circular(isFirst ? 16.0 : 4),
                       bottomLeft:
-                          Radius.circular(index == items.length - 1 ? 16.0 : 4),
+                          Radius.circular(isLast ? 16.0 : 4),
                       bottomRight:
-                          Radius.circular(index == items.length - 1 ? 16.0 : 4),
+                          Radius.circular(isLast ? 16.0 : 4),
                     ),
                   ),
                   clipBehavior: Clip.hardEdge,
@@ -91,11 +94,7 @@ class UnitTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       leading: Icon(icon, size: 24.0),
-      title: Text(
-        title,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      trailing: Icon(Icons.chevron_right),
+      title: Text(title),
       onTap: () => context.go(route),
     );
   }
