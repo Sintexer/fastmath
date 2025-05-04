@@ -44,8 +44,6 @@ class UnitsScreen extends ConsumerWidget {
         child: Center(
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            // decoration:
-            //     BoxDecoration(borderRadius: BorderRadius.circular(16.0)),
             width: 600,
             child: ListView.separated(
               itemCount: items.length,
@@ -54,7 +52,6 @@ class UnitsScreen extends ConsumerWidget {
                 final isFirst = index == 0;
                 final isLast = index == items.length - 1;
                 return Container(
-                  // margin: EdgeInsets.symmetric(vertical: 1.0, horizontal: 16.0),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLowest,
                     borderRadius: BorderRadius.only(
